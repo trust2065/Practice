@@ -1,14 +1,15 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-
 not working for this version of create-react-app
 
 enable @ on babel
 ex:
+```
 @DragSource(ItemTypes.KNIGHT, knightSource, collect)
 class Knight extends Component {
   ...
 }
+```
 npm install --save-dev babel-plugin-transform-decorators
 
 Write in other way instead of using decoration(@):
