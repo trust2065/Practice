@@ -13,7 +13,8 @@ class Knight extends Component {
 npm install --save-dev babel-plugin-transform-decorators
 
 Write in other way instead of using decoration(@):
-```class Board extends Component {
+```
+class Board extends Component {
   ...
 }
 export default DragDropContext(HTML5Backend)(Board);
