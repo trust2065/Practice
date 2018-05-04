@@ -27,10 +27,16 @@ import the folling extension to highest component you want to use
 ```
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+
+class Board extends Component {
+  ...
+}
+export default DragDropContext(HTML5Backend)(Board);
 ```
 
+put the following code in Knight.js
 ```
-export const ItemTypes = {
+const ItemTypes = {
   KNIGHT: 'knight'
 };
 
