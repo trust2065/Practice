@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import PropTypes from "prop-types";
 
 import Knight from "./Knight";
-import Square from "./Square";
+import BoardSquare from "./BoardSquare";
 import { moveKnight, canMoveKnight } from "./Game";
 
 import { DragDropContext } from "react-dnd";
@@ -17,18 +17,13 @@ class Board extends Component {
     const x = i % 8;
     const y = Math.floor(i / 8);
 
-    const black = (x + y) % 2 === 1;
     const [knightX, knightY] = this.props.knightPosition;
     const piece = x === knightX && y === knightY ? <Knight /> : null;
-    return (
-      <div
-        key={i}
-        style={{ width: "12.5%", height: "12.5%" }}
-        onClick={() => this.handleSquareClick(x, y)}
-      >
-        <Square black={black}>{piece}</Square>
-      </div>
-    );
+    return <div key={i} style={{ width: "12.5%", height: "12.5%" }}>
+        <BoardSquare x={x} y={y}>
+          {piece}
+        </BoardSquare>
+      </div>;
   }
 
   handleSquareClick(toX, toY) {
