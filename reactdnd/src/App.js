@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 // import logo from './logo.svg';
 // import './App.css';
-import Board from "./components/Board";
+import InputBox from "./components/InputBox";
 
 class App extends Component {
   render() {
     const {knightPosition} = this.props;
     return (
-        <div style={{ width: "500px", height: "500px" }}>
-          <Board knightPosition={knightPosition} />
+        <div style={{ margin: "100px 0 0 100px"}}>
+          <InputBox no={1}/>
+          <InputBox no={2}/>
         </div>
     );
   }
