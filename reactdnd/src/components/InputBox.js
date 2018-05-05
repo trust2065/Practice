@@ -21,6 +21,7 @@ const inputBoxTarget = {
     drop(props, monitor) {
         const no = monitor.getItem() ? monitor.getItem().no : null;
         console.log(`drop source ${no}`);
+        console.log(`drop target ${props.no}`);
         // dispatch action here
     }
 };
