@@ -2,6 +2,7 @@ import React, {Component} from "react"
 import { DragSource, DropTarget } from "react-dnd";
 import {ItemTypes} from "../constants/ReactDndItemTypes";
 import _ from 'lodash'
+import {moveInputBox} from "./InputBoxControl";
 
 const inputBoxSource = {
     beginDrag(props) {
@@ -19,9 +20,11 @@ function collectSource(connect, monitor) {
 
 const inputBoxTarget = {
     drop(props, monitor) {
-        const no = monitor.getItem() ? monitor.getItem().no : null;
-        console.log(`drop source ${no}`);
-        console.log(`drop target ${props.no}`);
+        const sourceNo = monitor.getItem() ? monitor.getItem().no : null;
+        const targetNo = props.no;
+        console.log(`drop source ${sourceNo}`);
+        console.log(`drop target ${targetNo}`);
+        moveInputBox(sourceNo, targetNo);
         // dispatch action here
     }
 };
@@ -34,11 +37,11 @@ function collectTarget(connect, monitor) {
 
 class InputBox extends Component {
     render() {
-        const { connectDragSource, connectDropTarget, no } = this.props;
+        const { connectDragSource, connectDropTarget, no, text } = this.props;
         console.log(this.props);
         return connectDropTarget(connectDragSource(<div style={{ border: "1px solid black", width: "200px", marginTop: "20px"}}>
             <p>{no}</p>
-            <input type="text" />
+            <input type="text" value={text} />
         </div>))
     }
 }

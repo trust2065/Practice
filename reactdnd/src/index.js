@@ -4,11 +4,11 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-import { observe } from "./components/Game";
+import { observe } from "./components/InputBoxControl";
 
-observe(knightPosition =>
+observe((sourceNo, targetNo) =>
   ReactDOM.render(
-    <App knightPosition={knightPosition} />,
+    <App sourceNo={sourceNo} targetNo={targetNo}/>,
     document.getElementById("root")
   )
 );
