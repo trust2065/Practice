@@ -18,7 +18,7 @@ class Board extends Component {
     const y = Math.floor(i / 8);
 
     const [knightX, knightY] = this.props.knightPosition;
-    const piece = x === knightX && y === knightY ? <Knight /> : null;
+    const piece = x === knightX && y === knightY ? <Knight test='knightProps' /> : null;
     return <div key={i} style={{ width: "12.5%", height: "12.5%" }}>
         <BoardSquare x={x} y={y}>
           {piece}

@@ -4,7 +4,28 @@ import {ItemTypes} from "../constants/ReactDndItemTypes";
 
 const knightSource = {
   beginDrag(props) {
-    return {};
+    return {id: "test"};
+  },
+  endDrag(props, monitor, component) {
+    if (!monitor.didDrop()) {
+      // You can check whether the drop was successful
+      // or if the drag ended but nobody handled the drop
+      return;
+    }
+
+    // When dropped on a compatible target, do something.
+    // Read the original dragged item from getItem():
+    const item = monitor.getItem();
+
+    // You may also read the drop result from the drop target
+    // that handled the drop, if it returned an object from
+    // its drop() method.
+    const dropResult = monitor.getDropResult();
+
+    console.log("source props");
+    console.log(props);
+    console.log("dropResult");
+    console.log(dropResult);
   }
 };
 function collect(connect, monitor) {
@@ -12,6 +33,7 @@ function collect(connect, monitor) {
     connectDragSource: connect.dragSource(),
     connectDragPreview: connect.dragPreview(),
     isDragging: monitor.isDragging(),
+    // isDrop: monitor.didDrop()
   };
 }
 
@@ -23,8 +45,9 @@ class Knight extends Component {
     img.onload = () => this.props.connectDragPreview(img);
   }
   render() {
+    console.log("render Knight");
     console.log(this.props);
-    const { connectDragSource, isDragging } = this.props;
+    const { connectDragSource, isDragging, isDrop } = this.props;
     return connectDragSource(
       <div
         style={{

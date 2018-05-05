@@ -7,9 +7,11 @@ import { DropTarget } from "react-dnd";
 const squareTarget = {
     canDrop(props) {
         return canMoveKnight(props.x, props.y);
+        // return false;
     },
     drop(props) {
         moveKnight(props.x, props.y);
+        return props;
     }
 };
 
@@ -37,6 +39,8 @@ class BoardSquare extends Component {
         );
     }
     render() {
+        // console.log("render BoardSqurare");
+        // console.log(this.props);
         const { x, y, connectDropTarget, isOver, canDrop } = this.props;
         const black = (x + y) % 2 === 1;
 
