@@ -20,6 +20,10 @@ class Board extends Component {
 export default DragDropContext(HTML5Backend)(Board);
 ```
 
+
+
+
+
 Adding the Drag and Drop Interaction 
 npm install --save react-dnd react-dnd-html5-backend
 
