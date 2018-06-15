@@ -1,2 +1,5 @@
 /reactdnd/node_modules
+/mocha/node_modules
 reactdnd/yarn-error.log
+mocha/yarn-error.log
+.vscode/settings.json
