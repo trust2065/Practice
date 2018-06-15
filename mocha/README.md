@@ -56,7 +56,7 @@ For detail, find the ‘Getting Mocha to work again - Steps’ part of this refe
 
 這時你的package.json 至少要有增加這些東西
 
-
+```
 package.json
     {
       "dependencies": {
@@ -82,10 +82,11 @@ package.json
         ]
       }
     }
-    
+```
 
 
 設定test  (用assert.equal)
+    
     // test/test1.js
     
     import assert from "assert";
@@ -118,6 +119,7 @@ package.json
 
 
 更多測試 (加法, 用chai expect) reference
+```
     function add(x, y) {
       return x + y;
     }
@@ -130,11 +132,12 @@ package.json
         expect(add(3, 4)).to.equal(7);
       });
     });
-    
+``` 
 
 
 Object測試 (要比較Object，用to.deep.equal)
 test.js
+```
     import reducer from "../src/test/shop_reducer";
     import actions from "../src/test/shop_actions";
     import { expect } from "chai";
@@ -180,11 +183,11 @@ test.js
         });
       });
     });
-
+```
 
 
 shop reducer
-    
+```  
     // shop_reducer.js
     
     import { normalize } from 'normalizr';
@@ -212,11 +215,12 @@ shop reducer
           return state;
       }
     }
-    
+```    
 
 
 shop actions
-    // shop_actions.js
+```
+// shop_actions.js
     
     module.exports = {
       deserializeOrder: order => {
@@ -226,11 +230,11 @@ shop actions
         };
       }
     };
-
+```
 
 
 schema
-    
+```  
     // schema.js
     
     import { schema } from 'normalizr';
@@ -246,7 +250,7 @@ schema
       product: productSchema
     });
     export { orderSchema, lineItemSchema, productSchema };
-    
+```    
 
 整理一下:
 要測試某個action是否正常，在根目錄底下建一個檔案，然後把你要測的東西通通import進來
