@@ -14,13 +14,20 @@ const colorScale = d3
   .domain([0, domainMax])
   .range(["red", "blue"]);
 
+const axis = d3
+  .axisBottom()
+  .ticks(5)
+  .scale(widthScale);
+
 // svg container
 const canvas = d3
   .select("body")
   .append("svg")
   .style("color", "red")
   .attr("width", width)
-  .attr("height", height);
+  .attr("height", height)
+  .append("g")
+  .attr("transform", "translate(20, 0)");
 
 // empty selection
 const bars = canvas
@@ -32,3 +39,8 @@ const bars = canvas
   .attr("height", 50)
   .attr("fill", data => colorScale(data))
   .attr("y", (data, i) => i * 100);
+
+canvas
+  .append("g")
+  .attr("transform", "translate(0, 400)")
+  .call(axis);
