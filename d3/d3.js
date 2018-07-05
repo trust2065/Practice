@@ -6,27 +6,22 @@ const canvas = d3
   .attr("width", 500)
   .attr("height", 500);
 
-const circle1 = canvas
+const circle = canvas
   .append("circle")
   .attr("cx", 50)
-  .attr("cy", 150)
+  .attr("cy", 50)
   .attr("r", 25);
 
-const circle2 = canvas
-  .append("circle")
-  .attr("cx", 50)
-  .attr("cy", 250)
-  .attr("r", 25);
-
-const circles = canvas
-  .selectAll("circle")
-  .data(data)
-  // update
-  .attr("fill", "green")
-  // exit
-  .exit()
-  .attr("fill", "yellow");
-
-// enter:  data.length > existDOM.length
-// update: data.length = existDOM.length
-// exit:   data.length < existDOM.length
+circle
+  .transition()
+  // .duration(500)
+  .delay(1000)
+  .attr("cx", 100)
+  // .transition()
+  // .attr("cy", 100)
+  // .transition()
+  // .attr("cx", 50)
+  // v4 we use 'on' instead of 'each' in v3
+  .on("start", function() {
+    d3.select(this).attr("fill", "red");
+  });
