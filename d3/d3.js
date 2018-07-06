@@ -1,30 +1,39 @@
-const data = [
-  { name: "Jason", age: 15 },
-  { name: "Jeny", age: 10 },
-  { name: "Kay", age: 20 }
-];
+const data = [10, 50, 80];
+const radius = 300;
+
+const color = d3.scaleOrdinal().range(["red", "blue", "green"]);
 
 const canvas = d3
   .select("body")
   .append("svg")
-  .attr("width", 200)
-  .attr("height", 200);
+  .attr("width", 1500)
+  .attr("height", 1500);
 
-canvas
-  .selectAll("anything")
-  .data(data)
-  .enter()
-  .append("rect")
-  .attr("width", data => data.age * 10)
-  .attr("height", 40)
-  .attr("y", (d, i) => i * 50);
-// .attr("fill", "blue");
+const group = canvas.append("g").attr("transform", "translate(300, 300)");
 
-canvas
-  .selectAll("text")
-  .data(data)
+const arc = d3
+  .arc()
+  .innerRadius(150)
+  .outerRadius(radius);
+
+const pie = d3.pie().value(data => data);
+
+const arcs = group
+  .selectAll(".arc")
+  .data(pie(data))
   .enter()
+  .append("g")
+  .attr("class", "arc");
+
+arcs
+  .append("path")
+  .attr("d", arc)
+  .attr("fill", data => color(data.data));
+
+arcs
   .append("text")
-  .attr("fill", "white")
-  .attr("y", (d, i) => i * 50 + 20)
-  .text(data => data.name);
+  // put label in right place
+  .attr("transform", data => `translate(${arc.centroid(data)})`)
+  .attr("text-anchor", "middle")
+  .attr("font-size", "2.5rem")
+  .text(data => data.data);
